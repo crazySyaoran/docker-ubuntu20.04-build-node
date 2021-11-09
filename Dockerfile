@@ -20,6 +20,7 @@ RUN pip3 install conan==1.40.4 coverage==4.4.2 flake8==3.5.0 gcovr==4.1 && \
     rm -rf /root/.cache/pip/*
 
 ENV CONAN_USER_HOME=/conan
+ENV CUSTOM_USER_NAME=syaoran
 
 RUN mkdir $CONAN_USER_HOME && \
     conan
@@ -46,12 +47,12 @@ RUN git clone https://github.com/ess-dmsc/build-utils.git && \
     git checkout c05ed046dd273a2b9090d41048d62b7d1ea6cdf3 && \
     make install
 
-RUN adduser --disabled-password --gecos "" jenkins
+RUN adduser --disabled-password --gecos "" $CUSTOM_USER_NAME
 
-RUN chown -R jenkins $CONAN_USER_HOME/.conan
+RUN chown -R $CUSTOM_USER_NAME $CONAN_USER_HOME/.conan
 RUN conan config set general.revisions_enabled=True
 
-USER jenkins
-WORKDIR /home/jenkins
+USER $CUSTOM_USER_NAME
+WORKDIR /home/$CUSTOM_USER_NAME
 
 RUN python3 -m pip install --user black codecov
