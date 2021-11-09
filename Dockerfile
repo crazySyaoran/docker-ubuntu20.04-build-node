@@ -16,7 +16,7 @@ RUN curl -LO https://github.com/Kitware/CMake/releases/download/v3.17.3/cmake-3.
     cd cmake-3.17.3 && \
     ./bootstrap && make && make install
 
-RUN pip3 install conan==1.40.4 coverage==4.4.2 flake8==3.5.0 gcovr==4.1 && \
+RUN pip3 install conan==1.40.4 coverage==4.4.2 flake8==3.5.0 gcovr==4.1 -i https://pypi.tuna.tsinghua.edu.cn/simple && \
     rm -rf /root/.cache/pip/*
 
 ENV CONAN_USER_HOME=/conan
@@ -55,4 +55,4 @@ RUN conan config set general.revisions_enabled=True
 USER $CUSTOM_USER_NAME
 WORKDIR /home/$CUSTOM_USER_NAME
 
-RUN python3 -m pip install --user black codecov
+RUN python3 -m pip install --user black codecov -i https://pypi.tuna.tsinghua.edu.cn/simple
