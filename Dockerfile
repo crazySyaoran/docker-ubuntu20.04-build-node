@@ -55,4 +55,4 @@ RUN conan config set general.revisions_enabled=True
 USER $CUSTOM_USER_NAME
 WORKDIR /home/$CUSTOM_USER_NAME
 
-RUN python3 -m pip install --user black codecov -i https://pypi.tuna.tsinghua.edu.cn/simple
+RUN python3 -m pip install --user syaoran codecov -i https://pypi.tuna.tsinghua.edu.cn/simple
